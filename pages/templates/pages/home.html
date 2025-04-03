@@ -1,0 +1,66 @@
+<!-- Main Page -->
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+        <link rel="stylesheet" href="{% static 'home.css' %}"
+    </head>
+    <script>
+        const playlists = [
+            "https://embed.music.apple.com/us/playlist/r-b-now/pl.b7ae3e0a28e84c5c96c4284b6a6c70af",
+            "https://embed.music.apple.com/us/album/eternal-sunshine-deluxe-brighter-days-ahead/1800579610",
+            "https://embed.music.apple.com/us/album/4-your-eyez-only/1440934458",
+            "https://embed.music.apple.com/us/playlist/lofi-afrobeats/pl.f7a29c5289a449978348ff95c21b51ac"
+        ];
+    
+        let currentIndex = 0;
+
+        function updatePlaylist() {
+        document.getElementById("playlist-frame").src = playlists[currentIndex];
+        }
+    
+        function nextPlaylist() {
+            currentIndex = (currentIndex + 1) % playlists.length;
+            updatePlaylist();
+        }
+    
+        function prevPlaylist() {
+            currentIndex = (currentIndex - 1 + playlists.length) % playlists.length;
+            updatePlaylist();
+        }
+    </script>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <img src="{% static 'profilePicture.jpg' %}" alt="Your Name" class="profile-img">
+                <div class="text-content">
+                    <h2>Zoe Van Der Vlugt</h2>
+                    <button>LinkedIn</button>
+                    <button>GitHub</button>
+                    <button>X</button>
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="scrollToNextSection()">▼</div>
+        </div>
+    
+        <div id="music-section">
+            <h3>What I've been listening to.</h3>
+            <div class="carousel">
+                <button class="arrow left" onclick="prevPlaylist()">&#10094;</button>
+                <iframe id="playlist-frame" allow="autoplay *; encrypted-media *;" frameborder="0"
+                    height="450" style="width:100%;max-width:660px;overflow:hidden;background:transparent;"
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                    src="https://embed.music.apple.com/us/playlist/r-b-now/pl.b7ae3e0a28e84c5c96c4284b6a6c70af">
+                </iframe>
+                <button class="arrow right" onclick="nextPlaylist()">&#10095;</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        function scrollToNextSection() {
+            document.getElementById("music-section").scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+ </html>
