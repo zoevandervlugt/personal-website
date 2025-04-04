@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "pages",
+    "daphne",
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = "myproject.asgi.application"
 WSGI_APPLICATION = "django_project.wsgi.application"
 
 
